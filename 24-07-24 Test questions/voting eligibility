@@ -1,0 +1,30 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class VotingEligibility {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Enter your age: ");
+        try {
+            double age = scanner.nextDouble();
+            String result = checkVotingEligibility(age);
+            System.out.println(result);
+        } catch (InputMismatchException e) {
+            System.out.println("Invalid input. Please enter a valid age.");
+        }
+    }
+
+    public static String checkVotingEligibility(double age) {
+        int votingAge = 18;
+        if (age < 0) {
+            return "Invalid age. Age cannot be negative.";
+        } else if (age < votingAge) {
+            int yearsLeft = votingAge - (int) age;
+            return "You are allowed to vote after " + yearsLeft + " years.";
+        } else if (age >= votingAge) {
+            return "You are eligible to vote.";
+        } else {
+            return "Invalid age. Please enter a valid age.";
+        }
+    }
+}
